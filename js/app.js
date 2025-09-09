@@ -36,9 +36,14 @@ function formatDate(dateString) {
 function renderLinks(links) {
   const container = $('#links');
   container.innerHTML = links.map((link) => {
-    const titleHTML = link.url
-      ? `<h2><a href="${escapeHTML(link.url)}" target="_blank" rel="noopener">${escapeHTML(link.title)}</a></h2>`
-      : `<h2>${escapeHTML(link.title)}</h2>`;
+  const titleHTML = link.url
+  ? `<h2><a href="${escapeHTML(link.url)}" target="_blank" rel="noopener">
+        ${escapeHTML(link.title)}
+        <svg class="external-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#0f5fff">
+          <path d="M14 3h7v7h-2V6.41L10.41 15 9 13.59 17.59 5H14V3z"/>
+        </svg>
+     </a></h2>`
+  : `<h2>${escapeHTML(link.title)}</h2>`;
 
     const noteHTML = link.note ? formatNote(link.note) : '';
 
