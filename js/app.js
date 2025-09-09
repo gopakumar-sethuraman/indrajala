@@ -27,13 +27,10 @@ function formatNote(note = '') {
     .join('');
 }
 
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
+  return date.toLocaleDateString(undefined, options);
 }
 
 function renderLinks(links) {
