@@ -1,7 +1,8 @@
 const $ = (selector) => document.querySelector(selector);
 
 async function loadLinks() {
-  const response = await fetch('./data/links.json', { cache: 'no-store' });
+  const timestamp = new Date().getTime();
+  const response = await fetch(`./data/links.json?t=${timestamp}`, { cache: 'no-store' });
   if (!response.ok) throw new Error('Failed to load links');
   const links = await response.json();
   links.sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
