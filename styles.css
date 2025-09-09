@@ -120,17 +120,20 @@ header {
   color: #0f5fff;
   text-decoration: none;
   position: relative;
-  padding-right: 1.1em;
+  padding-right: 1.2em; /* Slightly more room for the arrow */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; /* Ensures consistent glyph rendering */
 }
 
 .link-card a::after {
   content: "↗";
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 0.15em; /* Prevents clipping or overlap */
+  top: 0.15em;
   font-size: 0.85em;
+  font-family: "Segoe UI Symbol", "Arial", sans-serif; /* Ensures the arrow renders cleanly */
   color: #0f5fff;
   opacity: 0.6;
+  line-height: 1; /* Prevents vertical misalignment */
 }
 
 /* Single image fills card width */
