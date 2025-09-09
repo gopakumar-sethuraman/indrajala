@@ -125,15 +125,15 @@ header {
 }
 
 .link-card a::after {
-  content: "↗";
+  content: "\2197\FE0E"; /* ↗ with text-style variation */
   position: absolute;
-  right: 0.15em; /* Prevents clipping or overlap */
+  right: 0.15em;
   top: 0.15em;
   font-size: 0.85em;
-  font-family: "Segoe UI Symbol", "Arial", sans-serif; /* Ensures the arrow renders cleanly */
+  font-family: "Segoe UI", "Arial", sans-serif;
   color: #0f5fff;
   opacity: 0.6;
-  line-height: 1; /* Prevents vertical misalignment */
+  line-height: 1;
 }
 
 /* Single image fills card width */
