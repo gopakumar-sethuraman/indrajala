@@ -67,6 +67,14 @@ header {
 }
 
 /* Card layout */
+
+.link-card a,
+.link-card a:visited,
+.link-card a:hover,
+.link-card a:active {
+  text-decoration: none;
+}
+
 .link-card {
   background: #fff;
   border-radius: 10px;
@@ -117,17 +125,30 @@ header {
 }
 
 .link-card a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3em;
-  text-decoration: none;
   color: #0f5fff;
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-decoration: none;
+  font-weight: inherit;
+  background-image: linear-gradient(90deg, #ff6ec4, #7873f5, #4adeff);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.5s ease-in-out, opacity 0.4s ease-in-out;
+  opacity: 0.85;
 }
 
-.external-icon {
-  opacity: 0.6;
-  transform: translateY(1px); /* optional vertical tweak */
+.link-card a:hover {
+  background-size: 100% 2px;
+  opacity: 1;
+  animation: shimmer 1.5s linear forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 200% 100%;
+  }
 }
 
 
