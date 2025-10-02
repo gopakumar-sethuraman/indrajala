@@ -1,5 +1,56 @@
 [
   {
+  "url": "https://www.philippehalsman.com/",
+  "title": "Happy October",
+  "note": "'In Voluptate Mors', 1951 ©Philippe Halsman",
+  "images": [
+      "images/Voluptas_Mors.jpg"
+    ],
+  "addedAt": "2025-10-01T00:00:00Z"
+  },
+  {
+  "url": "https://nanzuka.com/en/artists/harumi-yamaguchi",
+  "title": "Harumi Yamaguchi",
+  "note": "> With her signature 'Gals', the artist invented the modern woman in Japan.\nNettleton, Taro. “The Airbrushed Irreverence of Harumi Yamaguchi.” [Art Basel](https://www.artbasel.com/stories/harumi-yamaguchi-parco?lang=en).\n\n©Nanzuka",
+  "images": [
+      "images/yamaguchi-1.jpeg",
+      "images/yamaguchi-2.jpeg"
+    ],
+  "addedAt": "2025-10-01T00:00:00Z"
+  },
+  {
+  "url": "https://www.youtube.com/watch?v=idb6piuKIug",
+  "title": "Crisis Jung",
+  "note": "Created by [Baptiste Gaubert and Jérémie Périn](https://www.bobbypills.com/) (Bobbypills).\n\n> Bienvenue dans un monde ravagé par les explosions de violence, un monde sans amour. Jung, le héros au cœur brisé, poursuit sa quête : réunifier Maria, son amour perdu, sauvagement décapitée par Petit Jésus. Il pourra compter sur le soutien d'alliés croisés sur sa route sanglante, des rencontres qui lui en apprendront beaucoup sur les autres, mais encore plus sur lui-même. Il devra aussi composer avec ses \"crises de violence\", une malédiction incontrôlable qui prend source dans son âme meurtrie.\nAll episodes of Crisis Jung for FREE [here](https://www.youtube.com/playlist?list=PL5-JUt8ZTHSsSfNkB5TTWymTAggng1w7E) .\n\n__Bonus__ DyE's [Fantasy](https://dai.ly/xlnz3u) video (2011). Directed by Jérémie Périn.",
+  "images": [
+      "images/crisis-jung-1.png",
+      "images/crisis-jung-2.png",
+      "images/crisis-jung-3.png",
+      "images/fantasy-1.png",
+      "images/fantasy-2.png",
+      "images/fantasy-3.png"
+    ],
+  "addedAt": "2025-10-01T00:00:00Z"
+  },
+    {
+  "url": "https://kyuyongeom.artstation.com/",
+  "title": "KyuYong Eom — Fantastic Girls",
+  "note": "'Birth of an angel'. Image ©KyuYong Eom",
+  "images": [
+      "images/kyuyong-eom-model1.jpg"
+    ],
+  "addedAt": "2025-10-01T00:00:00Z"
+  },
+  {
+  "url": "https://fengweic12.artstation.com/",
+  "title": "Feng Wei",
+  "note": "Aladdin and the Magic Lamp. Image ©Feng Wei (C12)",
+  "images": [
+      "images/feng-wei-c12-1.jpg"
+    ],
+  "addedAt": "2025-10-01T00:00:00Z"
+  },
+  {
     "url": "https://mockman.com/comic/color-map-of-h-p-lovecrafts-dreamlands/",
     "title": "Map of H.P. Lovecraft's Dreamlands",
     "note": "“The Dream Cycle is a series of short stories and novellas by author H. P. Lovecraft (1890–1937). Written between 1918 and 1932, they are about the 'Dreamlands', a vast alternate dimension that can only be entered via dreams. The Dreamlands are described as lying deeper than space, matter and time, and are a 'limitless vacua beyond all thought and entity'.”\n\nSource: Wikipedia — https://en.wikipedia.org/wiki/Dream_Cycle\n\n© Color map by Jason Thompson (2012) — https://mockman.com/",
@@ -10,7 +61,7 @@
   },
   {
     "title": "Mœbius — Voyage d'Hermès",
-    "note": "Les Mondes Élémentaires: Un Voyage Imaginé et Dessiné par Moebius. One of 9 illustrations created for the launch of the fragrance Voyage d'Hermès by Hermès in 2011 .",
+    "note": "Les Mondes Élémentaires: Un Voyage Imaginé et Dessiné par Moebius. One of 9 illustrations created by Mœbius for the launch of the fragrance Voyage d'Hermès by Hermès in 2011 .",
     "images": [
       "images/moebius-img2.png"
     ],

@@ -1,11 +1,7 @@
 /* ==============================
-   styles.css — Magical header + refined tagline
+   Base Reset & Typography
    ============================== */
-
-/* Reset & base */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -16,8 +12,8 @@ html {
 
 body {
   margin: 0;
-  color: #333;
   background: #fafafa;
+  color: #333;
   font-family: 'Source Sans Pro', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
@@ -25,7 +21,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Blog title with magical gradient + float */
+/* ==============================
+   Header & Title
+   ============================== */
+header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 h1.blog-title {
   font-family: 'Lora', serif;
   font-weight: 800;
@@ -33,48 +37,85 @@ h1.blog-title {
   text-align: center;
   background: linear-gradient(90deg, #f43f5e, #f97316, #f43f5e);
   background-size: 200% 200%;
-  background-clip: text;           /* Standard property */
-  -webkit-background-clip: text;   /* WebKit-specific */
+  background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientShift 8s ease infinite, floatTitle 6s ease-in-out infinite;
-  text-shadow: 0 0 12px rgba(244, 63, 94, 0.3); /* soft glow */
+  text-shadow: 0 0 12px rgba(244, 63, 94, 0.3);
 }
 
-/* Header container matches feed width */
-header {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Tagline — centered with subtle style */
 .tagline {
   text-align: center;
-  font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.1rem;
-  color: #f87171;           /* Soft coral red */
+  color: #f87171;
   margin-top: -0.25rem;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px dotted #fca5a5;
 }
 
-/* Main content container — centers cards */
+#about {
+  margin: 2rem auto;
+  max-width: 640px;
+  background: linear-gradient(135deg, #fdf6f0, #f0f4ff); /* warm blush to soft blue */
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #2c2c2c;
+  backdrop-filter: blur(2px);
+}
+
+#about h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #8e6e8c;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+.about-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-text p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2c2c2c;
+}
+
+/* ==============================
+   Main Content Container
+   ============================== */
 #links {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Card layout */
-
-.link-card a,
-.link-card a:visited,
-.link-card a:hover,
-.link-card a:active {
-  text-decoration: none;
-}
-
+/* ==============================
+   Card Layout
+   ============================== */
 .link-card {
   background: #fff;
   border-radius: 10px;
@@ -94,25 +135,33 @@ header {
 
 .link-card p {
   margin-bottom: 1rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: #222;
   line-height: 1.6;
-
 }
 
-.link-date {
-  text-align: right;
-  font-size: 0.85rem;
-  color: #888;
-  margin-top: 1rem;
-  font-style: italic;
+.link-card p strong {
+  font-weight: 700;
+  color: #333;
 }
 
-/* Style citation lines (e.g. Source: Wikipedia) */
-.link-card p:has(> a[href*="wikipedia.org"]) {
-  font-size: 0.95rem;
+.link-card p em {
   font-style: italic;
   color: #555;
+}
+
+.link-card p u {
+  text-decoration: underline;
+  text-decoration-color: #ff6ec4;
+  text-decoration-thickness: 2px;
+}
+
+.link-card blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid #ff6ec4;
+  color: #555;
+  font-style: normal;
 }
 
 .link-card small {
@@ -124,6 +173,18 @@ header {
   letter-spacing: 0.3px;
 }
 
+.link-card .card-date,
+.link-date {
+  text-align: right;
+  font-size: 1rem;
+  color: #888;
+  margin-top: 1rem;
+  font-style: normal;
+}
+
+/* ==============================
+   Link Styling & Hover Effects
+   ============================== */
 .link-card a {
   color: #0f5fff;
   text-decoration: none;
@@ -142,17 +203,72 @@ header {
   animation: shimmer 1.5s linear forwards;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 0% 100%;
-  }
-  100% {
-    background-position: 200% 100%;
-  }
+/* Wikipedia citation styling */
+.link-card p:has(> a[href*="wikipedia.org"]) {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* ==============================
+   Video Card Enhancements
+   ============================== */
+.link-card.video-card {
+  background-color: #fdf7ff;
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(to bottom, #ff6ec4, #7873f5, #4adeff) 1;
+  padding-left: 1.25rem;
+}
+
+.link-card.video-card h2 a {
+  color: #ff6ec4;
+  font-weight: 600;
+  background-image: linear-gradient(to right, #ff6ec4, #7873f5, #4adeff);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.5s ease-in-out;
+}
+
+.link-card.video-card h2 a:hover {
+  background-size: 100% 2px;
+}
+
+.link-card.video-card p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.link-card.video-card p a {
+  color: #7873f5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link-card.video-card .video-thumbnail {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 
-/* Single image fills card width */
+/* Play icon animation */
+.play-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  border-left: 10px solid #ff6ec4;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  animation: pulsePlay 1.2s ease-in-out infinite;
+}
+
+/* ==============================
+   Image Layouts
+   ============================== */
 .single-image img {
   width: 100%;
   height: auto;
@@ -160,10 +276,10 @@ header {
   border-radius: 8px;
 }
 
-/* Masonry grid inside card */
 .image-grid {
-  column-count: 3;
-  column-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -171,12 +287,11 @@ header {
   width: 100%;
   height: auto;
   display: block;
-  margin-bottom: 1rem;
   border-radius: 8px;
-  break-inside: avoid;
+  object-fit: cover;
 }
 
-/* Responsive adjustments */
+/* Responsive columns */
 @media (max-width: 900px) {
   .image-grid { column-count: 2; }
 }
@@ -185,17 +300,9 @@ header {
   .image-grid { column-count: 1; }
 }
 
-/* Links */
-a {
-  color: #0f5fff;
-  text-decoration: none;
-}
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
-
-/* Footer — centered */
+/* ==============================
+   Footer & Accessibility
+   ============================== */
 footer {
   text-align: center;
   font-size: 0.9rem;
@@ -205,7 +312,24 @@ footer {
   margin-top: 2rem;
 }
 
-/* Animations */
+:focus-visible {
+  outline: 2px solid #0f5fff;
+  outline-offset: 2px;
+}
+
+/* ==============================
+   Animations
+   ============================== */
+@keyframes shimmer {
+  0% { background-position: 0% 100%; }
+  100% { background-position: 200% 100%; }
+}
+
+@keyframes pulsePlay {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -215,10 +339,4 @@ footer {
 @keyframes floatTitle {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
-}
-
-/* Accessibility focus */
-:focus-visible {
-  outline: 2px solid #0f5fff;
-  outline-offset: 2px;
 }

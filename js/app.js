@@ -15,65 +15,120 @@ function escapeHTML(str = '') {
   }[c]));
 }
 
-function autoLink(text = '') {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  return escapeHTML(text).replace(urlRegex, url => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`);
-}
-
-function formatNote(note = '') {
-  return note
-    .split(/\n{2,}/) // split on double line breaks
-    .map(paragraph => `<p>${autoLink(paragraph.trim())}</p>`)
-    .join('');
+function isVideoLink(link) {
+  const combined = `${link.url} ${link.note || ""}`;
+  return /youtube\.com|dai\.ly/.test(combined);
 }
 
 function formatDate(dateString) {
-  const date = new Date(dateString);
-  const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
-  return date.toLocaleDateString(undefined, options);
+  const [year, month, day] = dateString.slice(0, 10).split("-");
+  const localDate = new Date(year, month - 1, day);
+  return localDate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
+
+function formatNoteElement(note = '') {
+  const p = document.createElement("p");
+
+  // Step 1: Parse Markdown-style links [text](url)
+  let parsed = note.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_, text, url) => {
+    return `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${escapeHTML(text)}</a>`;
+  });
+
+  // Step 2: Bold (**text**)
+  parsed = parsed.replace(/\*\*([^*]+)\*\*/g, (_, text) => `<strong>${escapeHTML(text)}</strong>`);
+
+  // Step 3: Italic (*text*)
+  parsed = parsed.replace(/\*([^*]+)\*/g, (_, text) => `<em>${escapeHTML(text)}</em>`);
+
+  // Step 4: Underline (__text__)
+  parsed = parsed.replace(/__([^_]+)__/g, (_, text) => `<u>${escapeHTML(text)}</u>`);
+
+  // Step 5: Blockquotes (> text)
+  parsed = parsed.replace(/^> (.+)$/gm, (_, text) => {
+  return `<blockquote>${escapeHTML(text)}</blockquote>`;});
+
+  // Step 6: Auto-link raw URLs (skip if already inside <a>)
+  parsed = parsed.replace(/(?<!href=")(https?:\/\/[^\s]+)/g, url =>
+    `<a href="${escapeHTML(url)}" target="_blank" rel="noopener">${escapeHTML(url)}</a>`
+  );
+
+  // Step 6: Inject each line safely
+  const lines = parsed.split(/\r?\n/);
+  lines.forEach(line => {
+    const span = document.createElement("span");
+    span.innerHTML = line;
+    p.appendChild(span);
+    p.appendChild(document.createElement("br"));
+  });
+
+  return p;
 }
 
 function renderLinks(links) {
   const container = $('#links');
-  container.innerHTML = links.map((link) => {
-  const titleHTML = link.url
-  ? `<h2><a href="${escapeHTML(link.url)}" target="_blank" rel="noopener">${escapeHTML(link.title)}</a></h2>`
-  : `<h2>${escapeHTML(link.title)}</h2>`;
+  container.innerHTML = "";
 
-    const noteHTML = link.note ? formatNote(link.note) : '';
+  links.forEach(link => {
+    const isVideo = isVideoLink(link);
+    const article = document.createElement("article");
+    article.classList.add("link-card");
+    if (isVideo) article.classList.add("video-card");
+    if (isVideo && link.thumbnail) {
+    const thumb = document.createElement("img");
+    thumb.src = link.thumbnail;
+    thumb.alt = `Thumbnail for ${link.title}`;
+    thumb.className = "video-thumbnail";
+    article.appendChild(thumb);
+}
 
-    let imageSection = '';
-    if (link.images && link.images.length > 0) {
-      if (link.images.length === 1) {
-        imageSection = `
-          <div class="single-image">
-            <img src="${escapeHTML(link.images[0])}" alt="${escapeHTML(link.title)}">
-          </div>
-        `;
-      } else {
-        imageSection = `
-          <div class="image-grid">
-            ${link.images.map(src =>
-              `<img src="${escapeHTML(src)}" alt="${escapeHTML(link.title)}">`
-            ).join('')}
-          </div>
-        `;
-      }
+    const h2 = document.createElement("h2");
+    const a = document.createElement("a");
+    a.href = link.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+
+    if (isVideo) {
+      const playIcon = document.createElement("span");
+      playIcon.className = "play-icon";
+      a.appendChild(playIcon);
     }
 
-    const dateHTML = link.addedAt
-      ? `<div class="link-date">${formatDate(link.addedAt)}</div>`
-      : '';
+    a.appendChild(document.createTextNode(link.title));
+    h2.appendChild(a);
+    article.appendChild(h2);
 
-    return `
-      <article class="link-card">
-        ${titleHTML}
-        ${noteHTML}
-        ${imageSection}
-        ${dateHTML}
-      </article>
-    `;
-  }).join('');
+    if (link.note) {
+      const pNote = formatNoteElement(link.note);
+      article.appendChild(pNote);
+    }
+
+    if (link.images && link.images.length > 0) {
+      const imageContainer = document.createElement("div");
+      imageContainer.className = link.images.length === 1 ? "single-image" : "image-grid";
+
+      link.images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = link.title;
+        imageContainer.appendChild(img);
+      });
+
+      article.appendChild(imageContainer);
+    }
+
+    if (link.addedAt) {
+      const pDate = document.createElement("p");
+      pDate.className = "card-date";
+      pDate.textContent = `Added: ${formatDate(link.addedAt)}`;
+      article.appendChild(pDate);
+    }
+
+    container.appendChild(article);
+  });
 }
 
 (async function init() {
